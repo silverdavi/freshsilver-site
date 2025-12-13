@@ -141,7 +141,7 @@ function App() {
         <h2 className={styles.sectionTitle}>📅 Day by Day</h2>
         
         <div className={styles.timeline}>
-          {ISRAEL_TRIP.map((day, index) => (
+          {ISRAEL_TRIP.map((day) => (
             <div key={day.date} className={styles.dayCard}>
               <div className={styles.dayHeader}>
                 <div className={styles.dayDate}>
