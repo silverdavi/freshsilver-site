@@ -514,19 +514,35 @@ function RSVPCard({ eventId, eventName, eventEmoji, eventDate }: RSVPProps) {
 }
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  // Start with sidebar closed on mobile (< 900px)
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 900
+    }
+    return true
+  })
 
   return (
     <div className={styles.appLayout}>
+      {/* Mobile overlay when sidebar is open */}
+      {sidebarOpen && (
+        <div 
+          className={styles.sidebarOverlay} 
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar toggle button - always visible on mobile */}
+      <button 
+        className={`${styles.sidebarToggle} ${sidebarOpen ? styles.sidebarToggleOpen : ''}`}
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        title={sidebarOpen ? 'Close menu' : 'Open menu'}
+      >
+        {sidebarOpen ? '✕' : '☰'}
+      </button>
+
       {/* Left Sidebar */}
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : styles.sidebarClosed}`}>
-        <button 
-          className={styles.sidebarToggle} 
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          title={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
-        >
-          {sidebarOpen ? '◀' : '▶'}
-        </button>
 
         {sidebarOpen && (
           <>

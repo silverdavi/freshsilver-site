@@ -28,29 +28,28 @@
   width: 40px;
 }
 
-.sidebarToggle {
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 48px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--divider);
-  border-radius: 0 8px 8px 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  z-index: 101;
-  transition: background 0.2s;
+/* Sidebar overlay for mobile */
+.sidebarOverlay {
+  display: none;
 }
 
-.sidebarToggle:hover {
-  background: var(--bg-surface);
-  color: var(--accent);
+.sidebarToggle {
+  display: none;
+}
+
+/* Desktop: hide toggle and overlay */
+@media (min-width: 901px) {
+  .sidebarOverlay {
+    display: none !important;
+  }
+  
+  .sidebarToggle {
+    display: none !important;
+  }
+}
+
+.sidebarToggleOpen {
+  /* marker class for open state */
 }
 
 .sidebarLogo {
@@ -748,12 +747,33 @@
 
 /* Mobile Responsive */
 @media (max-width: 900px) {
+  .sidebarOverlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
   .sidebar {
     position: fixed;
     left: 0;
-    width: 280px !important;
-    transform: translateX(-100%);
+    top: 0;
+    width: 300px !important;
+    height: 100vh;
+    transform: translateX(-300px);
     transition: transform 0.3s ease;
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
   }
 
   .sidebarOpen {
@@ -761,22 +781,48 @@
   }
 
   .sidebarClosed {
-    transform: translateX(-100%);
-    width: 280px !important;
+    transform: translateX(-300px);
   }
 
   .sidebarToggle {
-    right: -36px;
-    width: 36px;
-    height: 48px;
-    border-radius: 0 12px 12px 0;
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 12px;
+    top: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .sidebarToggle:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+  }
+
+  .sidebarToggle:active {
+    transform: scale(0.95);
   }
 
   .mainContent {
     margin-left: 0 !important;
     max-width: 100% !important;
-    padding: 1.5rem;
+    padding: 1rem;
+    padding-top: 4.5rem; /* Space for floating toggle button */
+  }
+
+  .header {
+    padding: 0.75rem 0;
+    margin-bottom: 1rem;
   }
 }
 
