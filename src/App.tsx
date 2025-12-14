@@ -611,6 +611,15 @@ function App() {
           <p className={styles.heroSubtitle}>
             Dec 29, 2025 — Jan 2, 2026
           </p>
+          
+          <a 
+            href="https://www.easy-rsvp.com/WKuGpL-beatbox-karakoke-dec-31-7-30pm" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.rsvpCta}
+          >
+            🎤 RSVP for NYE Karaoke →
+          </a>
           <div className={styles.tripHighlights}>
             <span>👨‍👩‍👧 Family</span>
             <span>🍻 Friends</span>

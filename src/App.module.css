@@ -409,6 +409,34 @@
   border: 1px solid var(--divider);
 }
 
+/* RSVP CTA Button */
+.rsvpCta {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.rsvpCta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(244, 63, 94, 0.5);
+  color: white;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4); }
+  50% { box-shadow: 0 4px 25px rgba(244, 63, 94, 0.6); }
+}
+
 /* Itinerary */
 .itinerary {
   margin-bottom: 4rem;
