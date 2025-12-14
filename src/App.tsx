@@ -50,7 +50,7 @@ const ISRAEL_TRIP: TripDay[] = [
       { time: 'Late Morning', title: 'Family in Safed', emoji: '👨‍👩‍👧', location: 'Safed', mapUrl: 'https://maps.google.com/?q=Safed,Israel' },
       { time: 'Noon', title: 'Visit Safsufa', emoji: '🏘️', location: 'Safsufa', mapUrl: 'https://maps.google.com/?q=Safsufa,Israel', description: 'On the way to Haifa' },
       { time: 'Afternoon', title: 'Visit Tal', emoji: '👋', location: 'Haifa area' },
-      { time: 'Evening', title: 'Irrelevant Group meetup', emoji: '🍻', location: 'Haifa', description: 'Friends gathering' },
+      { time: 'Evening', title: 'Irrelevant Group meetup', emoji: '🍻', location: 'Haifa', description: 'With the Haifa gang' },
     ]
   },
   {
@@ -79,8 +79,8 @@ const ISRAEL_TRIP: TripDay[] = [
     sleepingIn: 'In Flight ✈️',
     events: [
       { time: '08:30', title: 'Visit Amos', emoji: '👤', location: 'Maasiyahu', description: 'Morning visit' },
-      { time: 'Noon', title: 'Visit Rafi', emoji: '👤' },
-      { time: 'Afternoon', title: 'Visit Perl', emoji: '👤', location: 'Givat Zeev' },
+      { time: 'Noon', title: 'Visit cousins & lunch', emoji: '👨‍👩‍👧‍👦', location: 'Ramat Gan' },
+      { time: 'Afternoon', title: 'Visit friends', emoji: '👋', location: "Giva'at Ze'ev", mapUrl: 'https://maps.google.com/?q=Givat+Zeev,Israel' },
       { time: '~20:30', title: 'Arrive Ben Gurion T3', emoji: '🛫', description: 'El Al security (3+ hours before midnight flight)' },
       { 
         time: '00:05', 
