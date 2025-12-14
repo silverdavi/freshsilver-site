@@ -25,7 +25,7 @@ const ISRAEL_TRIP: TripDay[] = [
     date: 'Dec 29',
     dayOfWeek: 'Monday',
     location: 'JFK → Tel Aviv',
-    sleepingIn: 'In Flight ✈️ (Business Class)',
+    sleepingIn: 'In Flight ✈️',
     events: [
       { time: '08:30', title: 'Leave house', emoji: '🏠', description: 'Poughkeepsie → JFK (~2 hours drive)' },
       { time: '10:30', title: 'Arrive JFK Terminal 4', emoji: '🛫', description: 'El Al check-in & security (3 hours before)' },
@@ -34,7 +34,7 @@ const ISRAEL_TRIP: TripDay[] = [
         title: 'Flight LY10 Departs', 
         emoji: '✈️', 
         location: 'JFK Terminal 4 → Ben Gurion T3',
-        description: '10h 5m flight • Business Class • Seat 04A • Vegan meal 🥗'
+        description: '10h 5m flight • Seat 04A • Vegan meal 🥗'
       },
     ]
   },
@@ -75,7 +75,7 @@ const ISRAEL_TRIP: TripDay[] = [
     date: 'Jan 1',
     dayOfWeek: 'Thursday',
     location: 'Central → Airport',
-    sleepingIn: 'In Flight ✈️ (Premium)',
+    sleepingIn: 'In Flight ✈️',
     events: [
       { time: '08:30', title: 'Visit Amos', emoji: '👤', location: 'Maasiyahu', description: 'Morning visit' },
       { time: 'Noon', title: 'Visit Rafi', emoji: '👤' },
@@ -86,7 +86,7 @@ const ISRAEL_TRIP: TripDay[] = [
         title: 'Flight LY3 Departs', 
         emoji: '✈️', 
         location: 'Ben Gurion T3 → JFK T4',
-        description: '12h flight • Premium Class • Seat 13H'
+        description: '12h flight • Seat 13H'
       },
     ]
   },
