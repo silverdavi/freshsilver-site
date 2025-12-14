@@ -48,6 +48,7 @@ const ISRAEL_TRIP: TripDay[] = [
       { time: '~07:30', title: 'Pick up rental car', emoji: '🚗', description: 'Immigration + baggage + car rental' },
       { time: 'Morning', title: 'Drive to Safed', emoji: '🚗', description: '~2 hours north' },
       { time: 'Late Morning', title: 'Family in Safed', emoji: '👨‍👩‍👧', location: 'Safed', mapUrl: 'https://maps.google.com/?q=Safed,Israel' },
+      { time: 'Noon', title: 'Visit Safsufa', emoji: '🏘️', location: 'Safsufa', mapUrl: 'https://maps.google.com/?q=Safsufa,Israel', description: 'On the way to Haifa' },
       { time: 'Afternoon', title: 'Visit Tal', emoji: '👋', location: 'Haifa area' },
       { time: 'Evening', title: 'Irrelevant Group meetup', emoji: '🍻', location: 'Haifa', description: 'Friends gathering' },
     ]
