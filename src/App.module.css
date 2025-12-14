@@ -560,6 +560,159 @@
   border-top: 1px solid var(--divider);
 }
 
+/* Song List Card */
+.songListCard {
+  background: linear-gradient(135deg, #fdf2f8 0%, var(--bg-elevated) 100%);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 2px solid #EC4899;
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
+}
+
+.songListHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.songListEmoji {
+  font-size: 2.5rem;
+}
+
+.songListInfo h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.songListInfo p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.songGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.songItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--divider);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+}
+
+.songItem:hover {
+  background: #fce7f3;
+  border-color: #EC4899;
+  transform: translateX(2px);
+}
+
+.songTitle {
+  font-weight: 500;
+  font-size: 0.85rem;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.songArtist {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.songPlay {
+  color: #EC4899;
+  font-size: 0.7rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.songItem:hover .songPlay {
+  opacity: 1;
+}
+
+.songSuggestions {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: var(--bg-surface);
+  border-radius: 10px;
+}
+
+.suggestionLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.suggestionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.suggestionChip {
+  background: #fce7f3;
+  color: #be185d;
+  padding: 0.3rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.songSuggestForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.songSuggestInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  background: var(--bg-base);
+  transition: border-color 0.2s;
+}
+
+.songSuggestInput:focus {
+  outline: none;
+  border-color: #EC4899;
+}
+
+.songSuggestButton {
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.songSuggestButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
 /* RSVP Card */
 .rsvpCard {
   background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-elevated) 100%);

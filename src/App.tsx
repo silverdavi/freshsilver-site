@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from './App.module.css'
 import * as api from './api'
-import type { ChatMessage, RSVPEntry } from './api'
+import type { ChatMessage } from './api'
 
 interface DayEvent {
   time?: string
@@ -363,153 +363,93 @@ function ChatSidebar() {
   )
 }
 
-// RSVP Component for event attendance
-interface RSVPProps {
-  eventId: string
-  eventName: string
-  eventEmoji: string
-  eventDate: string
-}
+// Karaoke Song List Data
+const KARAOKE_SONGS = [
+  { title: 'Somewhere Only We Know', artist: 'Keane', url: 'https://www.youtube.com/watch?v=l5shwZTwHec' },
+  { title: 'Should I Stay or Should I Go', artist: 'The Clash', url: 'https://www.youtube.com/watch?v=RlngN3tXpLU' },
+  { title: "What's Up?", artist: '4 Non Blondes', url: 'https://www.youtube.com/watch?v=oLShwvZopls' },
+  { title: 'Breezeblocks', artist: 'alt-J', url: 'https://www.youtube.com/watch?v=goXMCV9_IN0' },
+  { title: "World's Smallest Violin", artist: 'AJR', url: 'https://www.youtube.com/watch?v=ClNkwd1u2eQ' },
+  { title: "I Think I'm Paranoid", artist: 'Garbage', url: 'https://www.youtube.com/watch?v=NBYJ_xHr8kw' },
+  { title: 'Hell Is Forever', artist: 'Hazbin Hotel', url: 'https://www.youtube.com/watch?v=_rztGoWeQVw' },
+  { title: 'I Wanna Be Your Slave', artist: 'Måneskin', url: 'https://www.youtube.com/watch?v=3MzEbJHnmJk' },
+  { title: 'All That She Wants', artist: 'Ace of Base', url: 'https://www.youtube.com/watch?v=8GcxmRJJH2o' },
+  { title: 'Smile Like You Mean It', artist: 'The Killers', url: 'https://www.youtube.com/watch?v=ufEYnw31udA' },
+  { title: 'Unholy', artist: 'Sam Smith & Kim Petras', url: 'https://www.youtube.com/watch?v=KoniFTHvqis' },
+  { title: 'Flagpole Sitta', artist: 'Harvey Danger', url: 'https://www.youtube.com/watch?v=JKKpYFbgl8E' },
+]
 
-function RSVPCard({ eventId, eventName, eventEmoji, eventDate }: RSVPProps) {
-  const [attendees, setAttendees] = useState<RSVPEntry[]>([])
-  const [name, setName] = useState('')
-  const [hasRSVPd, setHasRSVPd] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+// Song List Component for Karaoke
+function SongListCard() {
+  const [suggestion, setSuggestion] = useState('')
+  const [suggestions, setSuggestions] = useState<string[]>(() => {
+    const saved = localStorage.getItem('karaoke-suggestions')
+    return saved ? JSON.parse(saved) : []
+  })
+  const [submitted, setSubmitted] = useState(false)
 
-  const loadAttendees = useCallback(async () => {
-    const list = await api.fetchRSVP(eventId)
-    setAttendees(list)
-    
-    // Check if current user already RSVPd
-    const myId = api.getMyRSVPId(eventId)
-    if (myId) {
-      const isInList = list.some(a => a.visitorId === myId || a.id?.includes(myId))
-      setHasRSVPd(isInList)
-    }
-    setIsLoading(false)
-  }, [eventId])
-
-  // Load attendees on mount
-  useEffect(() => {
-    loadAttendees()
-  }, [loadAttendees])
-
-  // Poll for updates if API is configured
-  useEffect(() => {
-    if (!api.isApiConfigured()) return
-    const interval = setInterval(loadAttendees, 10000) // every 10s
-    return () => clearInterval(interval)
-  }, [loadAttendees])
-
-  // Listen for local updates via BroadcastChannel
-  useEffect(() => {
-    const channel = new BroadcastChannel(`freshsilver-rsvp-${eventId}`)
-    channel.onmessage = (event) => {
-      if (event.data.type === 'rsvp-update') {
-        setAttendees(event.data.attendees)
-      }
-    }
-    return () => channel.close()
-  }, [eventId])
-
-  const handleRSVP = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name.trim() || hasRSVPd || isSubmitting) return
-
-    setIsSubmitting(true)
-    const color = getRandomColor()
-    const result = await api.addRSVP(eventId, name.trim(), color)
-
-    if (result) {
-      setAttendees(prev => [...prev, result])
-      setHasRSVPd(true)
-      setName('')
-    }
-    setIsSubmitting(false)
+    if (!suggestion.trim()) return
+    
+    const newSuggestions = [...suggestions, suggestion.trim()]
+    setSuggestions(newSuggestions)
+    localStorage.setItem('karaoke-suggestions', JSON.stringify(newSuggestions))
+    setSuggestion('')
+    setSubmitted(true)
+    setTimeout(() => setSubmitted(false), 2000)
   }
-
-  const handleCancel = async () => {
-    if (!hasRSVPd || isSubmitting) return
-
-    setIsSubmitting(true)
-    const success = await api.removeRSVP(eventId)
-
-    if (success) {
-      await loadAttendees()
-      setHasRSVPd(false)
-    }
-    setIsSubmitting(false)
-  }
-
-  const myVisitorId = api.visitorId
 
   return (
-    <div className={styles.rsvpCard}>
-      <div className={styles.rsvpHeader}>
-        <div className={styles.rsvpEmoji}>{eventEmoji}</div>
-        <div className={styles.rsvpInfo}>
-          <h3>{eventName}</h3>
-          <p>{eventDate}</p>
+    <div className={styles.songListCard}>
+      <div className={styles.songListHeader}>
+        <div className={styles.songListEmoji}>🎤</div>
+        <div className={styles.songListInfo}>
+          <h3>NYE Karaoke Setlist</h3>
+          <p>Dec 31, 19:30–22:30 • BeatBox Tel Aviv</p>
         </div>
-        <span 
-          className={styles.rsvpMode} 
-          title={api.isApiConfigured() ? 'Synced to cloud' : 'Saved locally'}
-        >
-          {api.isApiConfigured() ? '☁️' : '💾'}
-        </span>
       </div>
 
-      <div className={styles.rsvpAttendees}>
-        <div className={styles.rsvpCount}>
-          <span className={styles.rsvpCountNumber}>
-            {isLoading ? '...' : attendees.length}
-          </span>
-          <span className={styles.rsvpCountLabel}>confirmed</span>
-        </div>
-        
-        {attendees.length > 0 && (
-          <div className={styles.rsvpList}>
-            {attendees.map((a) => {
-              const isMe = a.visitorId === myVisitorId || a.id?.includes(myVisitorId)
-              return (
-                <span 
-                  key={a.id} 
-                  className={`${styles.rsvpName} ${isMe ? styles.rsvpNameMe : ''}`}
-                  style={{ borderColor: a.color }}
-                >
-                  {a.name} {isMe && '(you)'}
-                </span>
-              )
-            })}
+      <div className={styles.songGrid}>
+        {KARAOKE_SONGS.map((song, i) => (
+          <a 
+            key={i}
+            href={song.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.songItem}
+          >
+            <span className={styles.songTitle}>{song.title}</span>
+            <span className={styles.songArtist}>{song.artist}</span>
+            <span className={styles.songPlay}>▶</span>
+          </a>
+        ))}
+      </div>
+
+      {suggestions.length > 0 && (
+        <div className={styles.songSuggestions}>
+          <div className={styles.suggestionLabel}>💡 Suggestions:</div>
+          <div className={styles.suggestionList}>
+            {suggestions.map((s, i) => (
+              <span key={i} className={styles.suggestionChip}>{s}</span>
+            ))}
           </div>
-        )}
-      </div>
-
-      {!hasRSVPd ? (
-        <form className={styles.rsvpForm} onSubmit={handleRSVP}>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Your name..."
-            className={styles.rsvpInput}
-            maxLength={30}
-            disabled={isSubmitting}
-          />
-          <button type="submit" className={styles.rsvpButton} disabled={isSubmitting}>
-            {isSubmitting ? '...' : "✓ I'm coming!"}
-          </button>
-        </form>
-      ) : (
-        <div className={styles.rsvpConfirmed}>
-          <span>✅ You're on the list!</span>
-          <button onClick={handleCancel} className={styles.rsvpCancel} disabled={isSubmitting}>
-            {isSubmitting ? '...' : 'Cancel'}
-          </button>
         </div>
       )}
+
+      <form className={styles.songSuggestForm} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={suggestion}
+          onChange={(e) => setSuggestion(e.target.value)}
+          placeholder="Suggest a song..."
+          className={styles.songSuggestInput}
+          maxLength={60}
+        />
+        <button type="submit" className={styles.songSuggestButton}>
+          {submitted ? '✓' : '+ Add'}
+        </button>
+      </form>
     </div>
   )
 }
@@ -683,13 +623,8 @@ function App() {
         <section id="highlights" className={styles.highlights}>
           <h2 className={styles.sectionTitle}>✨ Trip Highlights</h2>
           
-          {/* Karaoke RSVP - Featured */}
-          <RSVPCard 
-            eventId="karaoke-nye-2025"
-            eventName="NYE Karaoke Party"
-            eventEmoji="🎤"
-            eventDate="Dec 31, 19:30–22:30 • BitBox Tel Aviv"
-          />
+          {/* Karaoke Song List - Featured */}
+          <SongListCard />
 
           <div className={styles.highlightGrid}>
             <div className={styles.highlightCard}>
