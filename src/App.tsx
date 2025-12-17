@@ -61,7 +61,7 @@ const ISRAEL_TRIP: TripDay[] = [
     events: [
       { time: 'Morning', title: 'Canotera Client Work', emoji: '💼', location: 'Canotera Office, Haifa', description: 'On-site collaboration with key client • Kernel Keys LLC business' },
       { time: 'Afternoon', title: 'Drive to Tel Aviv', emoji: '🚗', description: '~1 hour south' },
-      { time: '17:00–20:00', title: 'Dan Snooker Club 147', emoji: '🎱', location: 'Tel Aviv', description: 'Pool & snooker with friends' },
+      { time: '17:00–20:00', title: 'Dan @ Rhea Labs • Club 147', emoji: '🎱', location: 'Tel Aviv', description: 'Business networking + snooker' },
       { 
         time: '19:30–22:30', 
         title: 'NYE Karaoke Party! 🎤', 
