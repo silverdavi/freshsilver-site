@@ -49,7 +49,7 @@ const ISRAEL_TRIP: TripDay[] = [
       { time: 'Morning', title: 'Drive to Safed', emoji: '🚗', description: '~2 hours north' },
       { time: 'Late Morning', title: 'Family in Safed', emoji: '👨‍👩‍👧', location: 'Safed', mapUrl: 'https://maps.google.com/?q=Safed,Israel' },
       { time: 'Noon', title: 'Visit Safsufa', emoji: '🏘️', location: 'Safsufa', mapUrl: 'https://maps.google.com/?q=Safsufa,Israel', description: 'On the way to Haifa' },
-      { time: 'Afternoon', title: 'Visit Tal', emoji: '👋', location: 'Haifa area' },
+      { time: 'Afternoon', title: 'Client Meeting: Tal @ Canotera', emoji: '🤝', location: 'Haifa area', description: 'Kernel Keys business development' },
       { time: 'Evening', title: 'Irrelevant Group meetup', emoji: '🍻', location: 'Haifa', description: 'With the Haifa gang' },
     ]
   },
@@ -59,7 +59,7 @@ const ISRAEL_TRIP: TripDay[] = [
     location: 'Haifa → Tel Aviv',
     sleepingIn: 'Tel Aviv Hotel 🏨',
     events: [
-      { time: 'Morning', title: 'Canotera Work', emoji: '💼', location: 'Canotera Office, Haifa', description: 'Working from the office in the morning 🏢' },
+      { time: 'Morning', title: 'Canotera Client Work', emoji: '💼', location: 'Canotera Office, Haifa', description: 'On-site collaboration with key client • Kernel Keys LLC business' },
       { time: 'Afternoon', title: 'Drive to Tel Aviv', emoji: '🚗', description: '~1 hour south' },
       { time: '17:00–20:00', title: 'Dan Snooker Club 147', emoji: '🎱', location: 'Tel Aviv', description: 'Pool & snooker with friends' },
       { 
@@ -546,10 +546,10 @@ function App() {
         </header>
 
         <section className={styles.hero}>
-          <div className={styles.heroEmoji}>🎉</div>
-          <h1 className={styles.heroTitle}>New Year's Trip 2025–2026</h1>
+          <div className={styles.heroEmoji}>✈️</div>
+          <h1 className={styles.heroTitle}>Israel Business Trip 2025</h1>
           <p className={styles.heroSubtitle}>
-            Dec 29, 2025 — Jan 2, 2026
+            Kernel Keys LLC • Dec 29, 2025 — Jan 2, 2026
           </p>
           
           <a 
@@ -561,11 +561,11 @@ function App() {
             🎤 RSVP for NYE Karaoke →
           </a>
           <div className={styles.tripHighlights}>
+            <span>🤝 Client: Canotera</span>
+            <span>💼 Office Day</span>
             <span>👨‍👩‍👧 Family</span>
             <span>🍻 Friends</span>
-            <span>🎤 Karaoke NYE</span>
-            <span>🎱 Snooker</span>
-            <span>💼 Canotera Office</span>
+            <span>🎤 NYE Celebration</span>
           </div>
         </section>
 
