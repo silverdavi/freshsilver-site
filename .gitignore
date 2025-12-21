@@ -26,3 +26,5 @@ npm-debug.log*
 # AWS SAM build
 backend/.aws-sam/
 backend/samconfig.toml
+rawplan/more_raw.txt
+rawplan/people.txt
