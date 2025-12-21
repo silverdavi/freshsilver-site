@@ -926,6 +926,206 @@
   color: var(--accent);
 }
 
+
+/* Vault Button */
+.vaultButton {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-left: 0.5rem;
+}
+
+.vaultButton:hover {
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  transform: scale(1.02);
+}
+
+/* Vault Overlay */
+.vaultOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+/* PIN Entry Box */
+.vaultPinBox {
+  background: var(--bg-elevated);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.vaultPinBox h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.vaultPinBox p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.vaultPinBox form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.vaultPinBox input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--divider);
+  border-radius: 10px;
+  font-size: 1.25rem;
+  text-align: center;
+  letter-spacing: 0.5em;
+  background: var(--bg-base);
+}
+
+.vaultPinBox input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.vaultPinBox input.pinError {
+  border-color: #EF4444;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.vaultPinBox button {
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vaultPinBox button:hover {
+  background: var(--accent-hover);
+}
+
+.pinErrorText {
+  color: #EF4444;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* Vault Content */
+.vaultContent {
+  background: var(--bg-elevated);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.vaultContent h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-right: 2rem;
+}
+
+.vaultClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--bg-surface);
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vaultClose:hover {
+  background: var(--divider);
+}
+
+.vaultSection {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--divider);
+}
+
+.vaultSection h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.vaultSection p {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.vaultSection p:last-child {
+  margin-bottom: 0;
+}
+
+.vaultSection strong {
+  color: var(--text-primary);
+}
+
+.vaultSection em {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.vaultHotel {
+  padding: 0.75rem;
+  background: var(--bg-base);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.vaultHotel:last-child {
+  margin-bottom: 0;
+}
+
+.vaultHotel h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
 /* Mobile Responsive */
 @media (max-width: 900px) {
   .sidebarOverlay {

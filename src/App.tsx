@@ -454,7 +454,111 @@ function SongListCard() {
   )
 }
 
+
+// Vault Component - PIN protected private info
+const VAULT_PIN = '4169'
+
+function VaultModal({ onClose }: { onClose: () => void }) {
+  const [pin, setPin] = useState('')
+  const [unlocked, setUnlocked] = useState(false)
+  const [error, setError] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (pin === VAULT_PIN) {
+      setUnlocked(true)
+      setError(false)
+    } else {
+      setError(true)
+      setPin('')
+    }
+  }
+
+  if (!unlocked) {
+    return (
+      <div className={styles.vaultOverlay} onClick={onClose}>
+        <div className={styles.vaultPinBox} onClick={e => e.stopPropagation()}>
+          <h2>🔐 Vault</h2>
+          <p>Enter PIN to access private details</p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="password"
+              value={pin}
+              onChange={e => setPin(e.target.value)}
+              placeholder="PIN"
+              maxLength={4}
+              autoFocus
+              className={error ? styles.pinError : ''}
+            />
+            <button type="submit">Unlock</button>
+          </form>
+          {error && <p className={styles.pinErrorText}>Incorrect PIN</p>}
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.vaultOverlay} onClick={onClose}>
+      <div className={styles.vaultContent} onClick={e => e.stopPropagation()}>
+        <button className={styles.vaultClose} onClick={onClose}>✕</button>
+        <h2>🔐 Private Vault</h2>
+        
+        <div className={styles.vaultSection}>
+          <h3>🚨 Emergency Info</h3>
+          <p>$10,000 savings in KernelKeys Bank of America (Zelle to personal BofA)</p>
+          <p>$10,000 in personal BofA savings</p>
+          <p>$5,000 in Capital One savings</p>
+          <p><em>Use main Apple Studio, password: DovAte twice (4...4...)</em></p>
+        </div>
+
+        <div className={styles.vaultSection}>
+          <h3>✈️ Flight Booking</h3>
+          <p><strong>El Al Code:</strong> ZDXQ7N</p>
+          <p>LY10: JFK → TLV • Dec 29, 13:30 • Business (J)</p>
+          <p>LY3: TLV → JFK • Jan 2, 00:05 • Premium (W)</p>
+        </div>
+
+        <div className={styles.vaultSection}>
+          <h3>🚗 Car Rental</h3>
+          <p><strong>Reservation:</strong> 1197383438</p>
+          <p>Pick up: Dec 30, 07:00 • Ben Gurion Airport</p>
+          <p>Return: Jan 1, 22:00 • Ben Gurion Airport</p>
+        </div>
+
+        <div className={styles.vaultSection}>
+          <h3>🏨 Hotels</h3>
+          <div className={styles.vaultHotel}>
+            <h4>Haifa (Dec 30)</h4>
+            <p><strong>Dovrinn Boutique Aparthotel</strong></p>
+            <p>Confirmation: 2350932847</p>
+            <p>9 Nahum Dovrin St, Haifa</p>
+            <p>📞 +972-544000059</p>
+          </div>
+          <div className={styles.vaultHotel}>
+            <h4>Tel Aviv (Dec 31 – Jan 1)</h4>
+            <p><strong>Hotel B Berdichevsky</strong></p>
+            <p>Confirmation: 6337469807</p>
+            <p>Check-in: 15:00 – 16:00</p>
+          </div>
+        </div>
+
+        <div className={styles.vaultSection}>
+          <h3>📞 Emergency Contacts</h3>
+          <p><strong>Israeli Lawyer:</strong> Uri Corb +972 50-621-6535</p>
+          <p><strong>Dr Perl:</strong> +972 50-868-5987</p>
+          <p><strong>Yael Gold-Zamir:</strong> +972 50-977-0671</p>
+          <p><strong>US Legal (Daniel Cohen):</strong> +1 (917) 273-3876</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function App() {
+  // Vault state
+  const [vaultOpen, setVaultOpen] = useState(false)
+  
   // Start with sidebar closed on mobile (< 900px)
   const [sidebarOpen, setSidebarOpen] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -542,7 +646,10 @@ function App() {
             <a href="#itinerary">Itinerary</a>
             <a href="#highlights">Highlights</a>
             <a href="https://dhsilver.me" target="_blank" rel="noopener noreferrer">About</a>
+            <button className={styles.vaultButton} onClick={() => setVaultOpen(true)}>🔐 Vault</button>
           </nav>
+          
+          {vaultOpen && <VaultModal onClose={() => setVaultOpen(false)} />}
         </header>
 
         <section className={styles.hero}>
