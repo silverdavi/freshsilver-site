@@ -462,6 +462,7 @@ function VaultModal({ onClose }: { onClose: () => void }) {
   const [pin, setPin] = useState('')
   const [unlocked, setUnlocked] = useState(false)
   const [error, setError] = useState(false)
+  const [activeTab, setActiveTab] = useState<'booking' | 'emergency'>('booking')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -497,8 +498,6 @@ function VaultModal({ onClose }: { onClose: () => void }) {
       </div>
     )
   }
-
-  const [activeTab, setActiveTab] = useState<'booking' | 'emergency'>('booking')
 
   return (
     <div className={styles.vaultOverlay} onClick={onClose}>
