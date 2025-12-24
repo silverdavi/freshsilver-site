@@ -498,58 +498,154 @@ function VaultModal({ onClose }: { onClose: () => void }) {
     )
   }
 
+  const [activeTab, setActiveTab] = useState<'booking' | 'emergency'>('booking')
+
   return (
     <div className={styles.vaultOverlay} onClick={onClose}>
       <div className={styles.vaultContent} onClick={e => e.stopPropagation()}>
         <button className={styles.vaultClose} onClick={onClose}>✕</button>
         <h2>🔐 Private Vault</h2>
         
-        <div className={styles.vaultSection}>
-          <h3>🚨 Emergency Info</h3>
-          <p>$10,000 savings in KernelKeys Bank of America (Zelle to personal BofA)</p>
-          <p>$10,000 in personal BofA savings</p>
-          <p>$5,000 in Capital One savings</p>
-          <p><em>Use main Apple Studio, password: DovAte twice (4...4...)</em></p>
+        <div className={styles.vaultTabs}>
+          <button 
+            className={`${styles.vaultTab} ${activeTab === 'booking' ? styles.vaultTabActive : ''}`}
+            onClick={() => setActiveTab('booking')}
+          >
+            📋 Booking Details
+          </button>
+          <button 
+            className={`${styles.vaultTab} ${activeTab === 'emergency' ? styles.vaultTabActive : ''}`}
+            onClick={() => setActiveTab('emergency')}
+          >
+            🆘 Emergency Plans
+          </button>
         </div>
 
-        <div className={styles.vaultSection}>
-          <h3>✈️ Flight Booking</h3>
-          <p><strong>El Al Code:</strong> ZDXQ7N</p>
-          <p>LY10: JFK → TLV • Dec 29, 13:30 • Business (J)</p>
-          <p>LY3: TLV → JFK • Jan 2, 00:05 • Premium (W)</p>
-        </div>
+        {activeTab === 'booking' && (
+          <>
+            <div className={styles.vaultSection}>
+              <h3>💰 Money & Access</h3>
+              <p>$10,000 savings in KernelKeys Bank of America (Zelle to personal BofA)</p>
+              <p>$10,000 in personal BofA savings</p>
+              <p>$5,000 in Capital One savings</p>
+              <p><em>Use main Apple Studio, password: DovAte twice (4...4...)</em></p>
+            </div>
 
-        <div className={styles.vaultSection}>
-          <h3>🚗 Car Rental</h3>
-          <p><strong>Reservation:</strong> 1197383438</p>
-          <p>Pick up: Dec 30, 07:00 • Ben Gurion Airport</p>
-          <p>Return: Jan 1, 22:00 • Ben Gurion Airport</p>
-        </div>
+            <div className={styles.vaultSection}>
+              <h3>✈️ Flight Booking</h3>
+              <p><strong>El Al Code:</strong> ZDXQ7N</p>
+              <p>LY10: JFK → TLV • Dec 29, 13:30 • Business (J)</p>
+              <p>LY3: TLV → JFK • Jan 2, 00:05 • Premium (W)</p>
+            </div>
 
-        <div className={styles.vaultSection}>
-          <h3>🏨 Hotels</h3>
-          <div className={styles.vaultHotel}>
-            <h4>Haifa (Dec 30)</h4>
-            <p><strong>Dovrinn Boutique Aparthotel</strong></p>
-            <p>Confirmation: 2350932847</p>
-            <p>9 Nahum Dovrin St, Haifa</p>
-            <p>📞 +972-544000059</p>
-          </div>
-          <div className={styles.vaultHotel}>
-            <h4>Tel Aviv (Dec 31 – Jan 1)</h4>
-            <p><strong>Hotel B Berdichevsky</strong></p>
-            <p>Confirmation: 6337469807</p>
-            <p>Check-in: 15:00 – 16:00</p>
-          </div>
-        </div>
+            <div className={styles.vaultSection}>
+              <h3>🚗 Car Rental</h3>
+              <p><strong>Reservation:</strong> 1197383438</p>
+              <p>Pick up: Dec 30, 07:00 • Ben Gurion Airport</p>
+              <p>Return: Jan 1, 22:00 • Ben Gurion Airport</p>
+            </div>
 
-        <div className={styles.vaultSection}>
-          <h3>📞 Emergency Contacts</h3>
-          <p><strong>Israeli Lawyer:</strong> Uri Corb +972 50-621-6535</p>
-          <p><strong>Dr Perl:</strong> +972 50-868-5987</p>
-          <p><strong>Yael Gold-Zamir:</strong> +972 50-977-0671</p>
-          <p><strong>US Legal (Daniel Cohen):</strong> +1 (917) 273-3876</p>
-        </div>
+            <div className={styles.vaultSection}>
+              <h3>🏨 Hotels</h3>
+              <div className={styles.vaultHotel}>
+                <h4>Haifa (Dec 30)</h4>
+                <p><strong>Dovrinn Boutique Aparthotel</strong></p>
+                <p>Confirmation: 2350932847</p>
+                <p>9 Nahum Dovrin St, Haifa</p>
+                <p>📞 +972-544000059</p>
+              </div>
+              <div className={styles.vaultHotel}>
+                <h4>Tel Aviv (Dec 31 – Jan 1)</h4>
+                <p><strong>Hotel B Berdichevsky</strong></p>
+                <p>Confirmation: 6337469807</p>
+                <p>Check-in: 15:00 – 16:00</p>
+              </div>
+            </div>
+
+            <div className={styles.vaultSection}>
+              <h3>📞 Emergency Contacts</h3>
+              <p><strong>Israeli Lawyer:</strong> Uri Corb +972 50-621-6535</p>
+              <p><strong>Dr Perl:</strong> +972 50-868-5987</p>
+              <p><strong>Yael Gold-Zamir:</strong> +972 50-977-0671</p>
+              <p><strong>US Legal (Daniel Cohen):</strong> +1 (917) 273-3876</p>
+            </div>
+          </>
+        )}
+
+        {activeTab === 'emergency' && (
+          <>
+            <div className={styles.vaultSection}>
+              <h3>💝 For Enny — If Something Happens</h3>
+              <p><em>Don't panic. You have resources, support, and time. Read through this calmly.</em></p>
+            </div>
+
+            <div className={styles.vaultSection}>
+              <h3>💵 Immediate Finances</h3>
+              <p>• <strong>Mortgage:</strong> ~$3,500/month via Shellpoint, on autopay. If needed, ask one of Tsion's sons for help for a few months until things are clearer.</p>
+              <p>• <strong>Use $20,000 emergency funds</strong> for a month without hesitation. It's nothing — we get $110,000 from Rhea Labs on January 3rd.</p>
+              <p>• <strong>Total accessible:</strong> ~$25,000 in savings + incoming $110k</p>
+            </div>
+
+            <div className={styles.vaultSection}>
+              <h3>👶 Childcare Help</h3>
+              <p>• <strong>Autumn:</strong> Hire for maximum hours. She will be paid promptly.</p>
+              <p>• <strong>Sariel:</strong> Pay $5,000/month to come help in the USA. Good for everyone.</p>
+              <p>• <strong>Alternatives:</strong> Shani, Araceli, or Araceli's friends can help.</p>
+            </div>
+
+            <div className={styles.vaultSection}>
+              <h3>💼 Work Communications</h3>
+              <p>• <strong>Margaret (Kernel Keys):</strong> Only after a few weeks, and only if she asks, send a simple email: "David is not feeling well and traveling, will contact her soon."</p>
+              <p>• <strong>No rush</strong> to inform anyone else about work matters.</p>
+            </div>
+
+            <div className={styles.vaultSection}>
+              <h3>🏫 School</h3>
+              <p>• Don't worry about school — only use them if they're helpful.</p>
+              <p>• <strong>Even a year out of school is completely fine.</strong> Focus on stability first.</p>
+            </div>
+
+            <div className={styles.vaultSection} style={{background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', border: '2px solid #f59e0b'}}>
+              <h3>🏥 Scenario: David is Sick/Hospitalized</h3>
+              <p>1. Contact Yael Gold-Zamir (+972 50-977-0671) — she can help coordinate in Israel</p>
+              <p>2. Call Dr. Perl (+972 50-868-5987) for medical advice/connections</p>
+              <p>3. US Embassy in Tel Aviv: +972-3-519-7575</p>
+              <p>4. Travel insurance is through the credit card — check Chase Sapphire benefits</p>
+              <p>5. If I need to be flown back, contact insurance first, then consider air ambulance</p>
+            </div>
+
+            <div className={styles.vaultSection} style={{background: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)', border: '2px solid #ef4444'}}>
+              <h3>⚖️ Scenario: David is Arrested/Detained</h3>
+              <p>1. <strong>STAY CALM.</strong> Israeli system is slow but fair for tourists.</p>
+              <p>2. Immediately call Uri Corb (lawyer): +972 50-621-6535</p>
+              <p>3. US Embassy emergency: +972-3-519-7575 (ask for American Citizen Services)</p>
+              <p>4. For US legal help: Daniel Cohen +1 (917) 273-3876, or ask Yariv</p>
+              <p>5. Do NOT post on social media. Do NOT discuss details with anyone except lawyers.</p>
+              <p>6. I have no criminal record — any issue is likely a misunderstanding.</p>
+            </div>
+
+            <div className={styles.vaultSection} style={{background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)', border: '2px solid #475569', color: 'white'}}>
+              <h3>✈️ Scenario: Flight Emergency / Plane Crash</h3>
+              <p style={{color: '#e2e8f0'}}>1. El Al will contact next of kin. Make sure they have your number.</p>
+              <p style={{color: '#e2e8f0'}}>2. Israeli consulate in NYC: +1 (212) 499-5000</p>
+              <p style={{color: '#e2e8f0'}}>3. Life insurance policy is with [check documents in safe]</p>
+              <p style={{color: '#e2e8f0'}}>4. All accounts have you as beneficiary</p>
+              <p style={{color: '#e2e8f0'}}>5. The house is jointly owned — you keep everything</p>
+              <p style={{color: '#e2e8f0'}}>6. Kernel Keys LLC passes to you as surviving spouse</p>
+              <p style={{color: '#94a3b8', marginTop: '0.5rem'}}><em>I love you and the kids more than anything. You will be okay. ❤️</em></p>
+            </div>
+
+            <div className={styles.vaultSection}>
+              <h3>📱 Key Contacts Summary</h3>
+              <p><strong>Israel Lawyer:</strong> Uri Corb +972 50-621-6535</p>
+              <p><strong>Doctor:</strong> Dr Perl +972 50-868-5987</p>
+              <p><strong>General Help:</strong> Yael Gold-Zamir +972 50-977-0671</p>
+              <p><strong>US Legal:</strong> Daniel Cohen +1 (917) 273-3876</p>
+              <p><strong>US Embassy Israel:</strong> +972-3-519-7575</p>
+              <p><strong>Israeli Consulate NYC:</strong> +1 (212) 499-5000</p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

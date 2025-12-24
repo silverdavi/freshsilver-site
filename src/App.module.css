@@ -1073,6 +1073,41 @@
   background: var(--divider);
 }
 
+
+/* Vault Tabs */
+.vaultTabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  background: var(--bg-surface);
+  padding: 0.25rem;
+  border-radius: 12px;
+}
+
+.vaultTab {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-muted);
+}
+
+.vaultTab:hover {
+  color: var(--text-primary);
+  background: var(--bg-base);
+}
+
+.vaultTabActive {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .vaultSection {
   background: var(--bg-surface);
   border-radius: 12px;
